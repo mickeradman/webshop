@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import { blockScroll } from "../../utils/helperFunctions/blockScroll";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Tooltip from '@mui/material/Tooltip';
+import { blockScroll } from '../../utils/helperFunctions/blockScroll';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -115,48 +115,48 @@ const Header = ({
     blockScroll(showShoppingCart);
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     };
   }, [showShoppingCart]);
 
   return (
-    <HeaderWrapper className={showShoppingCart ? "cartIsOpen" : ""}>
+    <HeaderWrapper className={showShoppingCart ? 'cartIsOpen' : ''}>
       <HeaderGridContainer>
         <HeaderTitleContainer>
           <HeaderTitle
-            onClick={() => navigate("/nyheter")}
-            className="noVisibleMarkerOnClick"
+            onClick={() => navigate('/news')}
+            className='noVisibleMarkerOnClick'
           >
             LEDORADO
           </HeaderTitle>
         </HeaderTitleContainer>
         <OptionsContainer>
           {adminHeader ? null : (
-            <Tooltip title={"Kundvagnen"} placement="bottom" arrow={true}>
+            <Tooltip title={'Kundvagnen'} placement='bottom' arrow={true}>
               <OptionsIconContainer
                 onClick={() => setShowShoppingCart(!showShoppingCart)}
               >
                 {articleCount ? (
                   <ProductCountChip>{articleCount}</ProductCountChip>
                 ) : null}
-                <ShoppingCartOutlinedIcon sx={{ fontSize: "2rem" }} />
+                <ShoppingCartOutlinedIcon sx={{ fontSize: '2rem' }} />
               </OptionsIconContainer>
             </Tooltip>
           )}
           <Tooltip
-            title={`Byt till ${isLightMode ? "mörkt tema" : "ljust tema"}`}
-            placement="bottom-start"
+            title={`Byt till ${isLightMode ? 'mörkt tema' : 'ljust tema'}`}
+            placement='bottom-start'
             arrow={true}
           >
             <OptionsIconContainer>
               {isLightMode ? (
                 <LightModeOutlinedIcon
-                  sx={{ fontSize: "2rem" }}
+                  sx={{ fontSize: '2rem' }}
                   onClick={() => onClickThemeChange()}
                 />
               ) : (
                 <DarkModeOutlinedIcon
-                  sx={{ fontSize: "2rem" }}
+                  sx={{ fontSize: '2rem' }}
                   onClick={() => onClickThemeChange()}
                 />
               )}

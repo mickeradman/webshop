@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { fetchProducts } from '../Product/ProductThunks';
 
 interface FilterState {
   minPrice: number;
@@ -8,7 +7,6 @@ interface FilterState {
   search: string;
   page: number;
   viewLimit: number;
-  total: number;
   totalPages: number;
 }
 
@@ -18,7 +16,6 @@ const initialState: FilterState = {
   search: '',
   page: 1,
   viewLimit: 10,
-  total: 0,
   totalPages: 1,
 };
 
@@ -41,17 +38,9 @@ const filterSlice = createSlice({
     setViewLimit: (state, action: PayloadAction<number>) => {
       state.viewLimit = action.payload;
     },
-    setTotal: (state, action: PayloadAction<number>) => {
-      state.total = action.payload;
-    },
     setTotalPages: (state, action: PayloadAction<number>) => {
       state.totalPages = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.totalPages = Math.ceil(action.payload.total / state.viewLimit);
-    });
   },
 });
 
@@ -61,7 +50,6 @@ export const {
   setSearch,
   setPage,
   setViewLimit,
-  setTotal,
   setTotalPages,
 } = filterSlice.actions;
 

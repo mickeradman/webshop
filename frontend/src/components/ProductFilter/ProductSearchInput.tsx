@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { debounce } from 'lodash';
 import ControlledInput from '../Input/ControlledInput';
-import { setSearch } from '../../store/Filter/FilterSlice';
+import { setSearch } from '../../store/Filter/filterSlice';
 import { useAppDispatch } from '../../store/useAppDispatch';
 import styled from 'styled-components';
 

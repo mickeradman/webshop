@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../../../views/Header/Header';
 import ProductFilter from '../../../components/ProductFilter/ProductFilter';
 import { ProductList } from '../AdminDashboard/ProductList';
 import { ProductPagination } from './ProductPagination';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { useAppDispatch } from '../../../store/useAppDispatch';
-import { setPage, setViewLimit } from '../../../store/Filter/FilterSlice';
 
 const Wrapper = styled.div`
   display: grid;
@@ -45,13 +41,6 @@ type Props = {
 };
 
 const AdminDashboard = ({ isLightMode, switchTheme }: Props) => {
-  const dispatch = useAppDispatch();
-  const { page, totalPages } = useSelector((state: RootState) => state.filter);
-
-  const handlePageChange = (newPage: number) => {
-    dispatch(setPage(newPage));
-  };
-
   return (
     <Wrapper>
       <Header
@@ -63,11 +52,7 @@ const AdminDashboard = ({ isLightMode, switchTheme }: Props) => {
         <PageTitle>Admin Dashboard</PageTitle>
         <ProductFilter />
         <ProductList />
-        <ProductPagination
-          page={page}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
+        <ProductPagination />
       </DashboardWrapper>
     </Wrapper>
   );

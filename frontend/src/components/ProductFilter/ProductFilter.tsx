@@ -1,9 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
-import { RootState } from '../../store/store';
-import { useAppDispatch } from '../../store/useAppDispatch';
-import { fetchProducts } from '../../store/Product/ProductThunks';
 import { PriceRangeSlider } from './PriceRangeSlider';
 import { ViewLimiter } from './ViewLimiter';
 import { ProductSearchInput } from './ProductSearchInput';
@@ -20,25 +16,7 @@ const FilterWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.filterBg};
 `;
 
-function ProductFilter() {
-  console.log('ProductFilter renderas om...');
-  const dispatch = useAppDispatch();
-  const { minPrice, maxPrice, search, page, viewLimit } = useSelector(
-    (state: RootState) => state.filter
-  );
-
-  useEffect(() => {
-    dispatch(
-      fetchProducts({
-        page,
-        viewLimit,
-        minPrice,
-        maxPrice,
-        search,
-      })
-    );
-  }, [page, viewLimit, minPrice, maxPrice, search, dispatch]);
-
+const ProductFilter = React.memo(() => {
   return (
     <FilterWrapper>
       <PriceRangeSlider />
@@ -46,6 +24,6 @@ function ProductFilter() {
       <ViewLimiter />
     </FilterWrapper>
   );
-}
+});
 
 export default ProductFilter;

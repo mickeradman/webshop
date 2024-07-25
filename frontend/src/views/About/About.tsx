@@ -14,9 +14,6 @@ const StyledGridContainer = styled.section`
 `;
 
 const About = () => {
-  localStorage.setItem('lastVisitedPage', location.pathname);
-  localStorage.setItem('lastInteractionTime', Date.now().toString());
-
   return (
     <StyledGridContainer>
       <h2>Om oss</h2>

@@ -1,14 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { useAppDispatch } from '../../../store/useAppDispatch';
 import { RootState } from '../../../store/store';
-import { selectVisibleProducts } from '../../../store/Product/ProductSlice';
-import { setViewLimit } from '../../../store/Filter/FilterSlice';
-import { fetchProducts } from '../../../store/Product/ProductThunks';
+import { useFetchProductsQuery } from '../../../api/productApi';
 import UncontrolledInput from '../../../components/Input/UncontrolledInput';
+import { ErrorHandler } from '../../../utils/helperFunctions/ErrorHandler';
+
 import type { Product } from '../../../types/types';
+
+const CenterDeviation = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ProductsWrapper = styled.ul<{ $scrollbarVisible: boolean }>`
   display: flex;
@@ -44,38 +49,40 @@ const FieldsContainer = styled.div`
 `;
 
 export const ProductList = () => {
-  const dispatch = useAppDispatch();
-  const { loading, error } = useSelector((state: RootState) => state.products);
+  const { page, viewLimit, minPrice, maxPrice, search } = useSelector(
+    (state: RootState) => state.filter
+  );
 
-  const products = useSelector(selectVisibleProducts);
+  const {
+    data: response,
+    error,
+    isLoading,
+  } = useFetchProductsQuery(
+    { page, viewLimit, minPrice, maxPrice, search },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const products = useMemo(() => response?.products || [], [response]);
+
   const [showLoading, setShowLoading] = useState(false);
   const [scrollbarVisible, setScrollbarVisible] = useState(false);
   const productsWrapperRef = useRef<HTMLUListElement>(null);
 
-  const { page, viewLimit } = useSelector((state: RootState) => state.filter);
-
-  useEffect(() => {
-    dispatch(setViewLimit(viewLimit));
-  }, [dispatch, viewLimit]);
-
-  useEffect(() => {
-    dispatch(fetchProducts({ page, viewLimit }));
-  }, [dispatch, page, viewLimit]);
-
   // Visa inte loading på skärmen om sidan laddats i mindre än en sekund
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    if (loading) {
+    if (isLoading) {
       timer = setTimeout(() => {
         setShowLoading(true);
       }, 1000);
     } else {
       setShowLoading(false);
     }
+
     return () => {
       clearTimeout(timer);
     };
-  }, [loading]);
+  }, [isLoading]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -101,12 +108,20 @@ export const ProductList = () => {
     }
   }, [page, products]);
 
-  if (loading && showLoading) {
+  if (isLoading && showLoading) {
     return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return ErrorHandler(error);
+  }
+
+  if (response && !response.success) {
+    return (
+      <CenterDeviation>
+        <p>{response.message}</p>
+      </CenterDeviation>
+    );
   }
 
   return (

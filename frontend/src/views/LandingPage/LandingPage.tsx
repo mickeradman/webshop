@@ -1,9 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-import { isValidPath } from "../../utils/helperFunctions/isValidPath";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const StyledLandingPage = styled.main`
   display: flex;
@@ -18,27 +15,10 @@ const StyledLandingPage = styled.main`
 
 function LandingPage() {
   const navigate = useNavigate();
-  const navPath = "/nyheter";
 
-  // Navigera till senast besökta fliken om det inte gått mer än 12 timmar - annars navigeras man till Nyheter.
   useEffect(() => {
-    const lastVisitedPage = localStorage.getItem("lastVisitedPage");
-    const lastInteractionTime = localStorage.getItem("lastInteractionTime");
-
-    if (
-      lastVisitedPage &&
-      isValidPath(lastVisitedPage) &&
-      lastInteractionTime &&
-      Date.now() - parseInt(lastInteractionTime) < 60 * 60 * 12 * 1000
-    ) {
-      localStorage.setItem("lastInteractionTime", Date.now().toString());
-      navigate(lastVisitedPage);
-    } else {
-      localStorage.setItem("lastVisitedPage", navPath);
-      localStorage.setItem("lastInteractionTime", Date.now().toString());
-      navigate(navPath);
-    }
-  }, [navPath, navigate]);
+    navigate('/products');
+  }, [navigate]);
 
   return (
     <StyledLandingPage>

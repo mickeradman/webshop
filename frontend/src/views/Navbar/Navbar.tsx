@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink, useLocation } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -26,7 +26,7 @@ const StyledListItem = styled.li`
 
     ::before,
     ::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0rem;
       bottom: 0;
@@ -60,16 +60,16 @@ const StyledNavLink = styled(NavLink)`
 
 const navLinks = [
   {
-    label: "Nyheter",
-    to: "/nyheter",
+    label: 'Nyheter',
+    to: '/news',
   },
   {
-    label: "Produkter",
-    to: "/produkter",
+    label: 'Produkter',
+    to: '/products',
   },
   {
-    label: "Om oss",
-    to: "/om-oss",
+    label: 'Om oss',
+    to: '/about',
   },
 ];
 
@@ -82,7 +82,7 @@ const Navbar = () => {
         {navLinks.map((link) => (
           <StyledListItem
             key={link.to}
-            className={location.pathname === link.to ? "active" : "inactive"}
+            className={location.pathname === link.to ? 'active' : 'inactive'}
           >
             <StyledNavLink to={link.to}>{link.label}</StyledNavLink>
           </StyledListItem>

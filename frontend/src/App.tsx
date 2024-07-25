@@ -29,15 +29,15 @@ const App: React.FC = () => {
       children: [
         {
           index: true,
-          path: "nyheter",
+          path: "news",
           element: <News />,
         },
         {
-          path: "produkter",
+          path: "products",
           element: <Products />,
         },
         {
-          path: "om-oss",
+          path: "about",
           element: <About />,
         },
       ],

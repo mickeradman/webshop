@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../store/useAppDispatch';
 import { RootState } from '../../store/store';
-import { setMinPrice, setMaxPrice } from '../../store/Filter/FilterSlice';
+import { setMinPrice, setMaxPrice } from '../../store/Filter/filterSlice';
 
 const SliderWrapper = styled.div`
   display: grid;

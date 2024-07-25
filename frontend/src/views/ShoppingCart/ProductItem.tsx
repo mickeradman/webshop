@@ -12,7 +12,7 @@ import { IMG_EXTENSION } from '../../utils/constants';
 import { CURRENCY } from '../../utils/constants';
 import { getAddedToCartQty } from '../../utils/helperFunctions/getAddedToCartQty';
 import { createHandleModifyCart } from '../../utils/helperFunctions/handleModifyCart';
-import { CartProps } from '../../store/Cart/CartSlice';
+import { CartProps } from '../../store/Cart/cartSlice';
 
 const ProductListItem = styled.li`
   display: grid;
