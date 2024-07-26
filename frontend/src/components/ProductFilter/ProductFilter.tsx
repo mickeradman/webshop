@@ -16,7 +16,7 @@ const FilterWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.filterBg};
 `;
 
-const ProductFilter = React.memo(() => {
+export const ProductFilter = React.memo(() => {
   return (
     <FilterWrapper>
       <PriceRangeSlider />
@@ -25,5 +25,3 @@ const ProductFilter = React.memo(() => {
     </FilterWrapper>
   );
 });
-
-export default ProductFilter;

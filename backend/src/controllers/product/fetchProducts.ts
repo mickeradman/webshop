@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
-import * as ProductService from '../services/product.service';
+import { getProductsFromDb } from '../../services/product/getProductsFromDb';
 
-export async function getProducts(req: Request, res: Response): Promise<void> {
+export async function fetchProducts(
+  req: Request,
+  res: Response
+): Promise<void> {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const viewLimit = parseInt(req.query.viewLimit as string) || 5;
@@ -25,16 +28,15 @@ export async function getProducts(req: Request, res: Response): Promise<void> {
       search,
     };
 
-    const { products, total } = await ProductService.getProductsFromDb(
-      queryParams
-    );
+    const { products, total } = await getProductsFromDb(queryParams);
 
     if (products.length > 0) {
       res.status(200).json({ success: true, products, total });
     } else {
       res.status(200).json({
         success: false,
-        message: 'Det finns inga produkter i databasen som matchar inställningarna i sökfiltret.',
+        message:
+          'Det finns inga produkter i databasen som matchar inställningarna i sökfiltret.',
       });
     }
   } catch (error) {

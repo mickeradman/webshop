@@ -1,4 +1,4 @@
-import Product, { IProduct } from '../models/product.schema';
+import Product, { IProduct } from '../../models/productModel';
 
 type QueryProps = {
   page: number;

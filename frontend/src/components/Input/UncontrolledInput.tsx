@@ -28,19 +28,25 @@ const StyledInput = styled.input`
 
 type UncontrolledInputProps = {
   label: string;
+  id?: string;
   defaultValue?: string | number;
   placeholder?: string;
 };
 
 const UncontrolledInput = ({
   label,
+  id,
   defaultValue,
   placeholder,
 }: UncontrolledInputProps) => {
   return (
     <InputWrapper>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput defaultValue={defaultValue} placeholder={placeholder} />
+      <StyledInput
+        id={id}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+      />
     </InputWrapper>
   );
 };

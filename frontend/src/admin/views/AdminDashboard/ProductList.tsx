@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { RootState } from '../../../store/store';
-import { useFetchProductsQuery } from '../../../api/productApi';
-import UncontrolledInput from '../../../components/Input/UncontrolledInput';
+import {
+  useFetchProductsQuery,
+  useUpdateProductMutation,
+} from '../../../api/productApi';
+import ControlledInput from '../../../components/Input/ControlledInput';
 import { ErrorHandler } from '../../../utils/helperFunctions/ErrorHandler';
 
 import type { Product } from '../../../types/types';
@@ -29,8 +32,8 @@ const ProductsWrapper = styled.ul<{ $scrollbarVisible: boolean }>`
 `;
 
 const ProductContainer = styled.li`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   align-items: center;
   padding: 0;
   width: 100%;
@@ -45,8 +48,34 @@ const FieldsContainer = styled.div`
   column-gap: 1rem;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
+
+const UpdateButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: #ffe6e6;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: linear-gradient(-45deg, #915c5c4d, #6b1e1e4d, #39396c7a);
+  /* background: linear-gradient(-45deg, #915c5c, #6b1e1e, #39396c); */
+  border: 1px solid #6e6eff;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(-45deg, #915c5c, #6b1e1e, #39396c);
+    box-shadow: 0 0 10px 0 #6e6eff;
+  }
+`;
+
+type FormFields = {
+  [productId: string]: Partial<Omit<Product, '_id'>>;
+};
 
 export const ProductList = () => {
   const { page, viewLimit, minPrice, maxPrice, search } = useSelector(
@@ -62,11 +91,14 @@ export const ProductList = () => {
     { refetchOnMountOrArgChange: true }
   );
 
-  const products = useMemo(() => response?.products || [], [response]);
-
+  const [updateProduct, { isLoading: isUpdating, error: updateError }] =
+    useUpdateProductMutation();
+  const [formFields, setFormFields] = useState<FormFields>({});
   const [showLoading, setShowLoading] = useState(false);
   const [scrollbarVisible, setScrollbarVisible] = useState(false);
   const productsWrapperRef = useRef<HTMLUListElement>(null);
+
+  const products = useMemo(() => response?.products || [], [response]);
 
   // Visa inte loading på skärmen om sidan laddats i mindre än en sekund
   useEffect(() => {
@@ -108,12 +140,42 @@ export const ProductList = () => {
     }
   }, [page, products]);
 
+  const handleFieldChange = (
+    productId: string,
+    fieldName: keyof Omit<Product, '_id'>,
+    value: string | number
+  ) => {
+    setFormFields((prev) => ({
+      ...prev,
+      [productId]: {
+        ...prev[productId],
+        [fieldName]: value,
+      },
+    }));
+  };
+
+  const handleUpdateProduct = async (productId: string) => {
+    const updateFields = formFields[productId];
+    if (!updateFields) return;
+
+    try {
+      await updateProduct({ productId, updateFields }).unwrap();
+      alert('Product updated successfully');
+    } catch (error) {
+      console.error('Failed to update product:', error);
+    }
+  };
+
   if (isLoading && showLoading) {
-    return <p>Loading...</p>;
+    return (
+      <CenterDeviation>
+        <p>Loading...</p>;
+      </CenterDeviation>
+    );
   }
 
   if (error) {
-    return ErrorHandler(error);
+    return <CenterDeviation>{ErrorHandler(error)}</CenterDeviation>;
   }
 
   if (response && !response.success) {
@@ -136,18 +198,32 @@ export const ProductList = () => {
             <FieldsContainer>
               {Object.keys(product).map((key) => {
                 if (key === '_id') return null;
-                if (key in product) {
-                  return (
-                    <UncontrolledInput
-                      key={key}
-                      label={key}
-                      defaultValue={String(product[key as keyof Product])}
-                    />
-                  );
-                }
-                return null;
+                return (
+                  <ControlledInput
+                    key={key}
+                    label={key}
+                    value={
+                      formFields[product._id]?.[
+                        key as keyof Omit<Product, '_id'>
+                      ] ?? product[key as keyof Product]
+                    }
+                    onChange={(e) =>
+                      handleFieldChange(
+                        product._id,
+                        key as keyof Omit<Product, '_id'>,
+                        e.target.value
+                      )
+                    }
+                  />
+                );
               })}
             </FieldsContainer>
+            <UpdateButton
+              onClick={() => handleUpdateProduct(product._id)}
+              disabled={isUpdating}
+            >
+              Update product
+            </UpdateButton>
           </ProductContainer>
         ))}
     </ProductsWrapper>

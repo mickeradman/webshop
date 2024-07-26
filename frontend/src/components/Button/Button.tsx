@@ -4,13 +4,15 @@ import styled from 'styled-components';
 type StyledButtonProps = {
   $gridRow?: string;
   $gridCol?: string;
+  $justifySelf?: string;
   $disabled?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
   grid-row: ${({ $gridRow }) => ($gridRow ? $gridRow : undefined)};
   grid-column: ${({ $gridCol }) => ($gridCol ? $gridCol : undefined)};
-  justify-self: flex-end;
+  justify-self: ${({ $justifySelf }) =>
+    $justifySelf ? $justifySelf : 'flex-end'};
   align-self: center;
   width: fit-content;
   height: fit-content;
@@ -34,6 +36,7 @@ type ButtonProps = {
   buttonText: string;
   gridRow?: string;
   gridCol?: string;
+  justifySelf?: string;
   cartIsEmpty?: boolean;
   disabled?: boolean;
   onClick: () => void;
@@ -43,6 +46,7 @@ const Button: React.FC<ButtonProps> = ({
   buttonText,
   gridRow,
   gridCol,
+  justifySelf,
   disabled,
   onClick,
 }) => {
@@ -50,6 +54,7 @@ const Button: React.FC<ButtonProps> = ({
     <StyledButton
       $gridRow={gridRow}
       $gridCol={gridCol}
+      $justifySelf={justifySelf}
       $disabled={disabled}
       onClick={onClick}
     >

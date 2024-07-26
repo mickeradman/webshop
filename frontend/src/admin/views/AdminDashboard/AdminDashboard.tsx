@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../../../views/Header/Header';
-import ProductFilter from '../../../components/ProductFilter/ProductFilter';
+import { ProductFilter } from '../../../components/ProductFilter/ProductFilter';
 import { ProductList } from '../AdminDashboard/ProductList';
 import { ProductPagination } from './ProductPagination';
 

@@ -17,18 +17,39 @@ type FetchProductsResponse = {
   message?: string;
 };
 
+type UpdateProductParams = {
+  productId: string;
+  updateFields: Partial<Omit<Product, '_id'>>;
+};
+
+type UpdateProductResponse = {
+  success: boolean;
+  product?: Product;
+  message?: string;
+};
+
 export const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     fetchProducts: builder.query<FetchProductsResponse, FetchProductsParams>({
       query: ({ page, viewLimit, minPrice, maxPrice, search }) => ({
-        url: 'users/products',
+        url: '/users/products',
         params: { page, viewLimit, minPrice, maxPrice, search },
       }),
       keepUnusedDataFor: 60 * 60, // 60 * 60 sekunder (1 timme)
     }),
+    updateProduct: builder.mutation<
+      UpdateProductResponse,
+      UpdateProductParams
+    >({
+      query: ({ productId, updateFields }) => ({
+        url: `/admin/products/${productId}`,
+        method: 'PUT',
+        body: updateFields,
+      }),
+    }),
   }),
 });
 
-export const { useFetchProductsQuery } = productApi;
+export const { useFetchProductsQuery, useUpdateProductMutation } = productApi;
