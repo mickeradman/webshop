@@ -14,14 +14,13 @@ const StyledButton = styled.button<StyledButtonProps>`
   justify-self: ${({ $justifySelf }) =>
     $justifySelf ? $justifySelf : 'flex-end'};
   align-self: center;
-  width: fit-content;
-  height: fit-content;
   background: ${({ theme, $disabled }) =>
     $disabled ? theme.color.disabledComponent : 'transparent'};
   color: ${({ theme }) => theme.color.textPrimary};
   font-size: 0.9rem;
-  border: ${({ $disabled }) => ($disabled ? 'none' : '1px solid #6f98b2')};
-  border-radius: 0.5rem;
+  border: ${({ theme, $disabled }) =>
+    $disabled ? 'none' : `1px solid ${theme.color.inputBorder}`};
+  border-radius: 5px;
   padding: 0.35rem;
   transition: background 200ms;
 
@@ -29,6 +28,11 @@ const StyledButton = styled.button<StyledButtonProps>`
     cursor: ${({ $disabled }) => ($disabled ? 'normal' : 'pointer')};
     background: ${({ theme, $disabled }) =>
       $disabled ? theme.color.disabledComponent : theme.color.buttonHover};
+  }
+
+  &:active {
+    background: ${({ theme }) => theme.color.inputBorderFocus};
+    box-shadow: 0 0 10px 0 #bbc1ff;
   }
 `;
 

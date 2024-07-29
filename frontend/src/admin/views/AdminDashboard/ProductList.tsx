@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { RootState } from '../../../store/store';
 import {
@@ -9,6 +10,8 @@ import {
 } from '../../../api/productApi';
 import ControlledInput from '../../../components/Input/ControlledInput';
 import { ErrorHandler } from '../../../utils/helperFunctions/ErrorHandler';
+import { allFieldsContainsAValue } from '../../../utils/helperFunctions/allFieldsContainsAValue';
+import { notify } from '../../../utils/helperFunctions/notify';
 
 import type { Product } from '../../../types/types';
 
@@ -37,6 +40,7 @@ const ProductContainer = styled.li`
   align-items: center;
   padding: 0;
   width: 100%;
+  row-gap: 1.5rem;
 `;
 
 const ProductTitle = styled.h2`
@@ -55,21 +59,17 @@ const UpdateButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  color: #ffe6e6;
+  color: ${({ theme }) => theme.color.textPrimary};
   font-weight: bold;
   letter-spacing: 1px;
-  background: linear-gradient(-45deg, #915c5c4d, #6b1e1e4d, #39396c7a);
-  /* background: linear-gradient(-45deg, #915c5c, #6b1e1e, #39396c); */
-  border: 1px solid #6e6eff;
-  margin-top: 1.5rem;
+  background: ${({ theme }) => theme.color.buttonBg};
+  border: 1px solid #bbc1ff;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(-45deg, #915c5c, #6b1e1e, #39396c);
-    box-shadow: 0 0 10px 0 #6e6eff;
+    box-shadow: 0 0 10px 0 #bbc1ff;
   }
 `;
 
@@ -86,6 +86,7 @@ export const ProductList = () => {
     data: response,
     error,
     isLoading,
+    refetch,
   } = useFetchProductsQuery(
     { page, viewLimit, minPrice, maxPrice, search },
     { refetchOnMountOrArgChange: true }
@@ -145,13 +146,63 @@ export const ProductList = () => {
     fieldName: keyof Omit<Product, '_id'>,
     value: string | number
   ) => {
-    setFormFields((prev) => ({
-      ...prev,
-      [productId]: {
-        ...prev[productId],
-        [fieldName]: value,
-      },
-    }));
+    const originalProduct = products.find(
+      (product) => product._id === productId
+    );
+    if (!originalProduct) return;
+
+    let convertedValue: string | number;
+
+    const originalValue = originalProduct[fieldName];
+    if (typeof originalValue === 'number' && value !== '') {
+      convertedValue = parseInt(value.toString(), 10);
+
+      if (fieldName === 'price' && convertedValue <= 0) {
+        notify('error', 'Priset får inte börja med noll.');
+        return;
+      }
+
+      if (isNaN(convertedValue)) {
+        notify('error', 'Endast siffror är tillåtna i detta fält.');
+        return;
+      }
+
+      const lastChar = value.toString().slice(-1);
+      if (/^[a-zA-Z]$/.test(lastChar)) {
+        notify('error', 'Endast siffror är tillåtna i detta fält.');
+        return;
+      }
+    } else {
+      convertedValue = value;
+    }
+
+    setFormFields((prev) => {
+      const newFormFields = { ...prev };
+
+      if (newFormFields[productId]) {
+        if (
+          newFormFields[productId][fieldName] !== undefined &&
+          convertedValue === originalProduct[fieldName]
+        ) {
+          const { [fieldName]: _, ...remainingFields } =
+            newFormFields[productId];
+          newFormFields[productId] = remainingFields;
+
+          if (Object.keys(newFormFields[productId]).length === 0) {
+            delete newFormFields[productId];
+          }
+        } else {
+          newFormFields[productId] = {
+            ...newFormFields[productId],
+            [fieldName]: convertedValue,
+          };
+        }
+      } else {
+        newFormFields[productId] = { [fieldName]: value };
+      }
+
+      return newFormFields;
+    });
   };
 
   const handleUpdateProduct = async (productId: string) => {
@@ -160,9 +211,16 @@ export const ProductList = () => {
 
     try {
       await updateProduct({ productId, updateFields }).unwrap();
-      alert('Product updated successfully');
+      notify('success', 'Product updated successfully!');
+      refetch();
+
+      setFormFields((prev) => {
+        const newFormFields = { ...prev };
+        delete newFormFields[productId];
+        return newFormFields;
+      });
     } catch (error) {
-      console.error('Failed to update product:', error);
+      notify('error', 'Failed to update product.');
     }
   };
 
@@ -218,12 +276,12 @@ export const ProductList = () => {
                 );
               })}
             </FieldsContainer>
-            <UpdateButton
-              onClick={() => handleUpdateProduct(product._id)}
-              disabled={isUpdating}
-            >
-              Update product
-            </UpdateButton>
+            {formFields[product._id] &&
+              allFieldsContainsAValue(formFields[product._id]) && (
+                <UpdateButton onClick={() => handleUpdateProduct(product._id)}>
+                  Update product
+                </UpdateButton>
+              )}
           </ProductContainer>
         ))}
     </ProductsWrapper>

@@ -9,6 +9,7 @@ export async function updateProductsInDb({
   productId,
   updateFields,
 }: UpdateProductParams): Promise<IProduct | null> {
+  console.log('Uppdaterar...')
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       productId,

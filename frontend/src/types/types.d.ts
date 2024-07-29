@@ -21,6 +21,8 @@ export type Theme = {
     headerFooterBg: string;
     hoverPrimary: string;
     hoverSecondary: string;
+    inputBorder: string;
+    inputBorderFocus: string;
     modalBg: string;
     navbarBg: string;
     navLinkActive: string;

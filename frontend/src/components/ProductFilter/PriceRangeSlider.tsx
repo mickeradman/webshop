@@ -71,7 +71,7 @@ const SliderInput = React.memo(styled.input<{ $active?: boolean }>`
     appearance: none;
     width: 0.5rem;
     height: 20px;
-    background: #8b8bff;
+    background: ${({ theme }) => '#7e98ff'};
     cursor: pointer;
     pointer-events: auto;
     border-radius: 4px;
@@ -81,7 +81,7 @@ const SliderInput = React.memo(styled.input<{ $active?: boolean }>`
   &::-moz-range-thumb {
     width: 0.5rem;
     height: 20px;
-    background: ${({ theme }) => theme.color.hoverPrimary};
+    background: ${({ theme }) => theme.color.buttonBg};
     cursor: pointer;
     pointer-events: auto;
     border-radius: 4px;
@@ -105,7 +105,7 @@ export const PriceRangeSlider = () => {
     const minPercent = (minPriceSliderState / absoluteMaxPrice) * 100;
     const maxPercent = (maxPriceSliderState / absoluteMaxPrice) * 100;
 
-    return `linear-gradient(to right, #b5b5ff ${minPercent}%, #FFF ${minPercent}%, #FFF ${maxPercent}%, #b5b5ff ${maxPercent}%)`;
+    return `linear-gradient(to right, #3e3eff ${minPercent}%, #FFF ${minPercent}%, #FFF ${maxPercent}%, #3e3eff ${maxPercent}%)`;
   }, [minPriceSliderState, maxPriceSliderState]);
 
   const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {

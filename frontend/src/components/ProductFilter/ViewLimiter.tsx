@@ -21,13 +21,13 @@ const StyledSelect = styled.select`
   align-self: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  border: 1px solid ${({ theme }) => theme.color.primary};
+  border: 1px solid ${({ theme }) => theme.color.inputBorder};
   color: ${({ theme }) => theme.color.textPrimary};
   background-color: ${({ theme }) => theme.color.appBg};
 
   &:focus {
     outline: transparent;
-    border-color: ${({ theme }) => theme.color.primary};
+    border-color: ${({ theme }) => theme.color.inputBorderFocus};
   }
 `;
 

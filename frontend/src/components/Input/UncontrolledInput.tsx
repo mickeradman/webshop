@@ -28,14 +28,12 @@ const StyledInput = styled.input`
 
 type UncontrolledInputProps = {
   label: string;
-  id?: string;
   defaultValue?: string | number;
   placeholder?: string;
 };
 
 const UncontrolledInput = ({
   label,
-  id,
   defaultValue,
   placeholder,
 }: UncontrolledInputProps) => {
@@ -43,7 +41,6 @@ const UncontrolledInput = ({
     <InputWrapper>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput
-        id={id}
         defaultValue={defaultValue}
         placeholder={placeholder}
       />
