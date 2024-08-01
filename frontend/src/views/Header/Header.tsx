@@ -29,7 +29,7 @@ const HeaderGridContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   max-width: 1440px;
-  min-width: 60%;
+  width: 60%;
 `;
 
 const HeaderTitleContainer = styled.section`

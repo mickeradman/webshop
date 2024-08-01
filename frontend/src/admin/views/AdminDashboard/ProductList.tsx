@@ -48,28 +48,33 @@ const ProductTitle = styled.h2`
 `;
 
 const FieldsContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   column-gap: 1rem;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
 `;
 
 const UpdateButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
   color: ${({ theme }) => theme.color.textPrimary};
   font-weight: bold;
   letter-spacing: 1px;
   background: ${({ theme }) => theme.color.buttonBg};
-  border: 1px solid #bbc1ff;
-  padding: 0.5rem 1rem;
+  background: transparent;
+  border: ${({ theme }) => `2px solid ${theme.color.buttonBorder}`};
   border-radius: 5px;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+  transition: box-shadow 200ms ease-in-out;
+  padding: 0.75rem 1rem;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #bbc1ff;
+    background: ${({ theme }) => theme.color.buttonBg};
+    border: none;
+    box-shadow: none;
+    padding: calc(0.75rem + 2px) calc(1rem + 2px);
   }
 `;
 
@@ -91,10 +96,10 @@ export const ProductList = () => {
     { page, viewLimit, minPrice, maxPrice, search },
     { refetchOnMountOrArgChange: true }
   );
-
   const [updateProduct, { isLoading: isUpdating, error: updateError }] =
     useUpdateProductMutation();
   const [formFields, setFormFields] = useState<FormFields>({});
+
   const [showLoading, setShowLoading] = useState(false);
   const [scrollbarVisible, setScrollbarVisible] = useState(false);
   const productsWrapperRef = useRef<HTMLUListElement>(null);
@@ -104,7 +109,7 @@ export const ProductList = () => {
   // Visa inte loading på skärmen om sidan laddats i mindre än en sekund
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    if (isLoading) {
+    if (isLoading || isUpdating) {
       timer = setTimeout(() => {
         setShowLoading(true);
       }, 1000);
@@ -115,7 +120,7 @@ export const ProductList = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [isLoading]);
+  }, [isLoading, isUpdating]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -224,7 +229,7 @@ export const ProductList = () => {
     }
   };
 
-  if (isLoading && showLoading) {
+  if ((isLoading || isUpdating) && showLoading) {
     return (
       <CenterDeviation>
         <p>Loading...</p>;
@@ -232,8 +237,16 @@ export const ProductList = () => {
     );
   }
 
-  if (error) {
-    return <CenterDeviation>{ErrorHandler(error)}</CenterDeviation>;
+  if (error || updateError) {
+    return (
+      <CenterDeviation>
+        {error
+          ? ErrorHandler(error)
+          : updateError
+          ? ErrorHandler(updateError)
+          : null}
+      </CenterDeviation>
+    );
   }
 
   if (response && !response.success) {

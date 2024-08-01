@@ -13,6 +13,8 @@ const FilterWrapper = styled.div`
   margin: 1rem 0;
   padding: 1rem 0;
   column-gap: 2rem;
+  border-radius: 5px;
+  border: ${({ theme }) => `1px solid ${theme.color.borderPrimary}`};
   background-color: ${({ theme }) => theme.color.filterBg};
 `;
 

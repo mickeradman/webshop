@@ -24,7 +24,7 @@ const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.color.inputBorderFocus};
+    background-color: ${({ theme }) => theme.color.inputBgFocus};
   }
 `;
 

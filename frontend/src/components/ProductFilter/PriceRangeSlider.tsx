@@ -105,7 +105,7 @@ export const PriceRangeSlider = () => {
     const minPercent = (minPriceSliderState / absoluteMaxPrice) * 100;
     const maxPercent = (maxPriceSliderState / absoluteMaxPrice) * 100;
 
-    return `linear-gradient(to right, #3e3eff ${minPercent}%, #FFF ${minPercent}%, #FFF ${maxPercent}%, #3e3eff ${maxPercent}%)`;
+    return `linear-gradient(to right, #98b0ff ${minPercent}%, #FFF ${minPercent}%, #FFF ${maxPercent}%, #98b0ff ${maxPercent}%)`;
   }, [minPriceSliderState, maxPriceSliderState]);
 
   const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {

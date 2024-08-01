@@ -27,7 +27,7 @@ const StyledSelect = styled.select`
 
   &:focus {
     outline: transparent;
-    border-color: ${({ theme }) => theme.color.inputBorderFocus};
+    background-color: ${({ theme }) => theme.color.inputBgFocus};
   }
 `;
 

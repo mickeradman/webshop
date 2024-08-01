@@ -30,9 +30,8 @@ const PageTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 1rem 0 0 0;
   padding: 1rem 0;
-  height: 2rem;
 `;
 
 type Props = {

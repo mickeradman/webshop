@@ -12,6 +12,7 @@ export type Theme = {
     borderPrimary: string;
     buttonHover: string;
     buttonBg: string;
+    buttonBorder: string;
     cartCountChip: string;
     cartSummaryBg: string;
     delimiterPrimary: string;
@@ -21,8 +22,9 @@ export type Theme = {
     headerFooterBg: string;
     hoverPrimary: string;
     hoverSecondary: string;
+    inputBgFocus: string;
     inputBorder: string;
-    inputBorderFocus: string;
+    inputBorderError: string;
     modalBg: string;
     navbarBg: string;
     navLinkActive: string;

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
-import { createGlobalStyle } from "styled-components";
+import styled from 'styled-components';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+import { createGlobalStyle } from 'styled-components';
 
 // Används för att sätta bakgrundsfärgen på body efter aktuellt tema
 export const GlobalStyle = createGlobalStyle`
@@ -26,7 +26,7 @@ export const TopGridContainer = styled.div<{ $padding?: string }>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  padding: ${({ $padding }) => ($padding ? $padding : "0")};
+  padding: ${({ $padding }) => ($padding ? $padding : '0')};
 `;
 
 // Nedanstående är för styling av "lägg till och ta bort-knappar" för produkter i kundvagnen

@@ -27,12 +27,13 @@ const StyledButton = styled.button<StyledButtonProps>`
   &:hover {
     cursor: ${({ $disabled }) => ($disabled ? 'normal' : 'pointer')};
     background: ${({ theme, $disabled }) =>
-      $disabled ? theme.color.disabledComponent : theme.color.buttonHover};
+      $disabled ? theme.color.disabledComponent : 'transparent'};
   }
 
   &:active {
-    background: ${({ theme }) => theme.color.inputBorderFocus};
-    box-shadow: 0 0 10px 0 #bbc1ff;
+    background: ${({ theme, $disabled }) =>
+      $disabled ? '' : '#c8c8c8'};
+    ${({ $disabled }) => !$disabled && 'box-shadow: 0 0 10px 0 #bbc1ff'};
   }
 `;
 
