@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 import { RootState } from '../../../store/store';
 import {
@@ -12,6 +13,7 @@ import ControlledInput from '../../../components/Input/ControlledInput';
 import { ErrorHandler } from '../../../utils/helperFunctions/ErrorHandler';
 import { allFieldsContainsAValue } from '../../../utils/helperFunctions/allFieldsContainsAValue';
 import { notify } from '../../../utils/helperFunctions/notify';
+import Button from '../../../components/Button/Button';
 
 import type { Product } from '../../../types/types';
 
@@ -23,10 +25,11 @@ const CenterDeviation = styled.div`
 
 const ProductsWrapper = styled.ul<{ $scrollbarVisible: boolean }>`
   display: flex;
-  width: calc(100% - 2rem);
+  width: ${({ $scrollbarVisible }) =>
+    $scrollbarVisible ? 'calc(100% - 2rem)' : '100%'};
   align-items: center;
   flex-direction: column;
-  row-gap: 3rem;
+  row-gap: 2rem;
   padding: 0;
   margin: 1rem 0;
   overflow-y: auto;
@@ -40,42 +43,32 @@ const ProductContainer = styled.li`
   align-items: center;
   padding: 0;
   width: 100%;
-  row-gap: 1.5rem;
+  row-gap: 1rem;
+`;
+
+const TitleAndRemoveProductWrapper = styled.div`
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
 `;
 
 const ProductTitle = styled.h2`
-  margin: 0 0 0.5rem 0;
+  margin: 0;
+`;
+
+const StyledDeleteIcon = styled(DeleteOutlineOutlinedIcon)`
+  color: #ffabab;
+
+  &:hover {
+    color: #ff4747;
+  }
 `;
 
 const FieldsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   column-gap: 1rem;
-`;
-
-const UpdateButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  color: ${({ theme }) => theme.color.textPrimary};
-  font-weight: bold;
-  letter-spacing: 1px;
-  background: ${({ theme }) => theme.color.buttonBg};
-  background: transparent;
-  border: ${({ theme }) => `2px solid ${theme.color.buttonBorder}`};
-  border-radius: 5px;
-  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
-  transition: box-shadow 200ms ease-in-out;
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.color.buttonBg};
-    border: none;
-    box-shadow: none;
-    padding: calc(0.75rem + 2px) calc(1rem + 2px);
-  }
+  row-gap: 0.5rem;
 `;
 
 type FormFields = {
@@ -265,7 +258,15 @@ export const ProductList = () => {
       {products?.length > 0 &&
         products.map((product: Product) => (
           <ProductContainer key={product._id} id={product._id}>
-            <ProductTitle>{product.productName}</ProductTitle>
+            <TitleAndRemoveProductWrapper>
+              <ProductTitle>{product.productName}</ProductTitle>
+              <Button
+                icon={<StyledDeleteIcon />}
+                buttonText='Remove'
+                padding='unset'
+                onClick={() => null}
+              />
+            </TitleAndRemoveProductWrapper>
             <FieldsContainer>
               {Object.keys(product).map((key) => {
                 if (key === '_id') return null;
@@ -288,12 +289,24 @@ export const ProductList = () => {
                   />
                 );
               })}
+              <Button
+                buttonText='Add field'
+                padding='0.55rem 1rem'
+                margin='0 0 0.5rem 0'
+                variant='secondary'
+                justifySelf='flex-start'
+                alignSelf='flex-end'
+                onClick={() => null}
+              />
             </FieldsContainer>
             {formFields[product._id] &&
               allFieldsContainsAValue(formFields[product._id]) && (
-                <UpdateButton onClick={() => handleUpdateProduct(product._id)}>
-                  Update product
-                </UpdateButton>
+                <Button
+                  buttonText='Update product'
+                  size='medium'
+                  variant='primary'
+                  onClick={() => handleUpdateProduct(product._id)}
+                />
               )}
           </ProductContainer>
         ))}

@@ -34,6 +34,37 @@ const PageTitle = styled.h1`
   padding: 1rem 0;
 `;
 
+const AddRemoveWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+// const AddNewProduct = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: fit-content;
+//   color: ${({ theme }) => theme.color.textPrimary};
+//   background-color: ${({ theme }) => theme.color.buttonBg};
+//   font-weight: bold;
+//   letter-spacing: 1px;
+//   padding: 0.5rem 1rem;
+//   border-radius: 5px;
+//   border: none;
+//   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+//   transition: box-shadow 200ms ease-in-out;
+//   cursor: pointer;
+
+//   &:hover {
+//     background-color: ${({ theme }) => theme.color.buttonBg};
+//     border: none;
+//     box-shadow: none;
+//     padding: calc(0.5rem + 2px) calc(1rem + 2px);
+//   }
+// `;
+
 type Props = {
   isLightMode: boolean;
   switchTheme: () => void;

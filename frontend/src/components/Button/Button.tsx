@@ -1,69 +1,129 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const sizeStyles = {
+  small: css`
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  `,
+  medium: css`
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  `,
+  large: css`
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  `,
+};
+
+const variantStyles = {
+  primary: css`
+    background: ${({ theme }) => theme.color.buttonBg};
+    border: none;
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+
+    &:active {
+      background: ${({ theme }) => theme.color.buttonBg};
+      color: rgba(0, 0, 0, 0.6);
+      box-shadow: inset 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+    }
+  `,
+  secondary: css`
+    color: ${({ theme }) => theme.color.buttonBorderHover};
+    background: transparent;
+    border: ${({ theme }) => `2px solid ${theme.color.buttonBorder}`};
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      background: ${({ theme }) => theme.color.buttonBorder};
+      border-color: ${({ theme }) => theme.color.buttonBorderHover};
+    }
+
+    &:active {
+      background: ${({ theme }) => theme.color.buttonBg};
+      box-shadow: inset 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+    }
+  `,
+  danger: css`
+    background: transparent;
+    border: ${({ theme }) => `2px solid ${theme.color.buttonDangerBorder}`};
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+  `,
+};
 
 type StyledButtonProps = {
-  $gridRow?: string;
-  $gridCol?: string;
+  $size?: 'small' | 'medium' | 'large';
+  $variant?: 'primary' | 'secondary' | 'danger';
+  $margin?: string;
+  $padding?: string;
   $justifySelf?: string;
-  $disabled?: boolean;
+  $alignSelf?: string;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
-  grid-row: ${({ $gridRow }) => ($gridRow ? $gridRow : undefined)};
-  grid-column: ${({ $gridCol }) => ($gridCol ? $gridCol : undefined)};
-  justify-self: ${({ $justifySelf }) =>
-    $justifySelf ? $justifySelf : 'flex-end'};
-  align-self: center;
-  background: ${({ theme, $disabled }) =>
-    $disabled ? theme.color.disabledComponent : 'transparent'};
-  color: ${({ theme }) => theme.color.textPrimary};
-  font-size: 0.9rem;
-  border: ${({ theme, $disabled }) =>
-    $disabled ? 'none' : `1px solid ${theme.color.inputBorder}`};
+  border: none;
   border-radius: 5px;
-  padding: 0.35rem;
+  color: ${({ theme }) => theme.color.textPrimary};
+  background-color: transparent;
   transition: background 200ms;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
 
-  &:hover {
-    cursor: ${({ $disabled }) => ($disabled ? 'normal' : 'pointer')};
-    background: ${({ theme, $disabled }) =>
-      $disabled ? theme.color.disabledComponent : 'transparent'};
-  }
+  ${({ $size }) => $size && sizeStyles[$size]}
+  ${({ $variant }) => $variant && variantStyles[$variant]}
 
-  &:active {
-    background: ${({ theme, $disabled }) =>
-      $disabled ? '' : '#c8c8c8'};
-    ${({ $disabled }) => !$disabled && 'box-shadow: 0 0 10px 0 #bbc1ff'};
+  ${({ $margin }) => $margin && `margin: ${$margin};`}
+  ${({ $padding }) => $padding && `padding: ${$padding};`}
+  ${({ $justifySelf }) => $justifySelf && `justify-self: ${$justifySelf};`}
+  ${({ $alignSelf }) => $alignSelf && `align-self: ${$alignSelf};`}
+
+  &&&:disabled {
+    background: ${({ theme }) => theme.color.disabledComponent};
+    color: ${({ theme }) => theme.color.textInverted};
+    border: 2px solid transparent;
+    box-shadow: none;
+    cursor: unset;
   }
 `;
 
 type ButtonProps = {
-  buttonText: string;
-  gridRow?: string;
-  gridCol?: string;
+  buttonText?: string;
+  icon?: React.ReactNode;
+  size?: 'small' | 'medium' | 'large';
+  variant?: 'primary' | 'secondary' | 'danger';
+  margin?: string;
+  padding?: string;
   justifySelf?: string;
-  cartIsEmpty?: boolean;
+  alignSelf?: string;
   disabled?: boolean;
   onClick: () => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
   buttonText,
-  gridRow,
-  gridCol,
+  icon,
+  size,
+  variant,
+  margin,
+  padding,
   justifySelf,
+  alignSelf,
   disabled,
   onClick,
 }) => {
   return (
     <StyledButton
-      $gridRow={gridRow}
-      $gridCol={gridCol}
+      $size={size}
+      $variant={variant}
+      $margin={margin}
+      $padding={padding}
       $justifySelf={justifySelf}
-      $disabled={disabled}
+      $alignSelf={alignSelf}
+      disabled={disabled}
       onClick={onClick}
     >
-      {buttonText}
+      {icon ? icon : buttonText}
     </StyledButton>
   );
 };

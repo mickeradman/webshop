@@ -41,9 +41,10 @@ export const ProductPagination = () => {
       {pageNumbers.map((p) => (
         <Button
           key={p}
+          buttonText={p.toString()}
           onClick={() => handlePageChange(p)}
           disabled={p === page}
-          buttonText={p.toString()}
+          size="small"
         />
       ))}
     </PaginationWrapper>

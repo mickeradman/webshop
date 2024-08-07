@@ -13,6 +13,9 @@ export type Theme = {
     buttonHover: string;
     buttonBg: string;
     buttonBorder: string;
+    buttonBorderHover: string;
+    buttonDangerBg: string;
+    buttonDangerBorder: string;
     cartCountChip: string;
     cartSummaryBg: string;
     delimiterPrimary: string;

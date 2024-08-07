@@ -80,6 +80,12 @@ const ModalCloseButton = styled(CloseRoundedIcon)`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  justify-self: flex-end;
+`;
+
 type Props = {
   children: JSX.Element;
   headerTitle: string | undefined;
@@ -121,13 +127,15 @@ function DrawerModal({
         <TopGridContainer $padding='1.5rem'>
           <ModalTitle>{headerTitle}</ModalTitle>
           <ModalCloseButton onClick={handleClose} />
-          <Button
-            gridRow='1 / 2'
-            gridCol='3 / 4'
-            buttonText='Töm kundvagnen'
-            disabled={cartItems.length === 0}
-            onClick={handleModifyCart('clear')}
-          />
+          <ButtonWrapper>
+            <Button
+              buttonText='Töm kundvagnen'
+              size='small'
+              variant='secondary'
+              disabled={cartItems.length === 0}
+              onClick={handleModifyCart('clear')}
+            />
+          </ButtonWrapper>
         </TopGridContainer>
         {children}
       </ModalContainer>
