@@ -19,7 +19,7 @@ const Product: Schema = new Schema(
       required: true,
     },
     imgPath: { type: String, required: true },
-    category: { type: String, required: true },
+    category: { type: String },
   },
   { collection: 'wares' }
 );
