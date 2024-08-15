@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   products: persistReducer(productsPersistConfig, productReducer),
   filter: filterReducer,
-  [productApi.reducerPath]: productApi.reducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
@@ -32,7 +31,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(productApi.middleware),
+    }),
 });
 
 export const persistor = persistStore(store);
