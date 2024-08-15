@@ -42,14 +42,14 @@ Note: Make sure you don't run any other services on ports 3000 and 5173.
   - Pagination.
   - Editing existing fields and updating database.
  
-* Functionality that doesn NOT work in the admin panel at the moment:
-  - Add new product to db.
+* Functionality that doesn't work in the admin panel at the moment:
+  - Add new product to database.
   - Add new field to a product (though the button exist at least ;).
-  - Remove product from db.
-  - Probably a lot more more functionalities that I haven't figured out yet.
+  - Remove product from database.
+  - Probably a lot more functionalities that I haven't figured out yet.
 
 <br>
 
 ## Regrets
 
-* That I didn't start this projekt with a wireframe and a prototype...
+* That I didn't start this project with a wireframe and a prototype...
