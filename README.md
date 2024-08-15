@@ -3,7 +3,9 @@ This is my webshop.
 
 --- INSTRUCTIONS FOR TESTING ---
 
-1. Create a .env-file in the backend/ folder. And inside that file add these two lines:
+1. Run "pnpm install" in projects root folder.
+   
+2. Create a .env-file in the backend/ folder. And inside that file add these two lines:
 
    DB_URL = mongodb+srv://tempuser:TmDhNXzrCQBR31Nk@cluster0.txjsntp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
@@ -11,9 +13,9 @@ This is my webshop.
 
    Note: Be sure you don't run any other services on port 3000.
 
-3. Run the command "pnpm run seed" from the root folder.
+3. Run the command "pnpm run seed" in projects root folder.
 
-4. Run the command "pnpm dev" from root folder.
+4. Run the command "pnpm dev" in projects root folder.
 
 5. Open your preferred web browser and go to http://localhost:5173/
 
