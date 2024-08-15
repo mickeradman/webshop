@@ -50,6 +50,6 @@ I started working on this project as a degree project during the time I was stud
 
 <br>
 
-## Things I've realized after starting this projekt
+## Regrets
 
-* Should have started in Figma...
+* That I didn't start this projekt with a wireframe and a prototype...
