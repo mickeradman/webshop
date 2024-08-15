@@ -2,6 +2,8 @@
 
 I started working on this project as a degree project during the time I was studying to become a JavaScript developer. After my studies were finished I decided to continue working on it.
 
+This is an ongoing project and it's far from finished.
+
 <br>
 
 ## Instructions for testing
@@ -10,14 +12,11 @@ I started working on this project as a degree project during the time I was stud
 
 2. Run "pnpm install" in projects root folder.
    
-3. Create a .env-file in the backend/ folder and add these two lines:
+3. Create a .env-file in the backend/ folder and add the two lines that I (hopefully) sent you in one way or another.
 
-         DB_URL = mongodb+srv://tempuser:TmDhNXzrCQBR31Nk@cluster0.txjsntp.mongodb.net/webshop-db?retryWrites=true&w=majority&appName=Cluster0
-         PORT = 3000
+4. Run "pnpm run seed" in projects root folder to clean and populate the database.
 
-4. Run the command "pnpm run seed" in projects root folder.
-
-5. Run the command "pnpm dev" in projects root folder.
+5. Run "pnpm dev" in projects root folder.
 
 6. Open your preferred web browser and go to http://localhost:5173/
 
