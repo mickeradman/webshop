@@ -29,8 +29,8 @@ Note: Make sure you don't run any other services on ports 3000 and 5173.
 
 ## Additional notes
 
-* I was thinking one day that I need a admin panel/dashboard and since then I've been focusing almost a 100% on getting that page and its functionality done. I want to
-  be able to CRUD directly from my the page instead of beeing forced to login to MongoDB to do all that stuff.
+* One day, I realized that I needed an admin panel/dashboard, and since then, I've been focusing almost 100% on getting that page and its functionality done.
+  I want to be able to perform CRUD operations directly from the page instead of being forced to log in to MongoDB to do all that stuff.
 
 * Right now there's no login to the page as it's under development. The same goes for the admin panel.
 
