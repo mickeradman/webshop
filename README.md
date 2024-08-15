@@ -6,17 +6,18 @@ This is my webshop.
 1. Create a .env-file in the backend/ folder. And inside that file add these two lines:
 
    DB_URL = mongodb+srv://tempuser:TmDhNXzrCQBR31Nk@cluster0.txjsntp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
    PORT = 3000
 
    Note: Be sure you don't run any other services on port 3000.
 
-2. Run the command "pnpm run seed" from the root folder.
+3. Run the command "pnpm run seed" from the root folder.
 
-3. Run the command "pnpm dev" from root folder.
+4. Run the command "pnpm dev" from root folder.
 
-4. Open your preferred web browser and go to http://localhost:5173/
+5. Open your preferred web browser and go to http://localhost:5173/
 
-5. If you want to go to the admin-panel, which I'm currently working on, go to: http://localhost:5173/admin
+6. If you want to go to the admin-panel, which I'm currently working on, go to: http://localhost:5173/admin
 
 
 --- NOTES ---
