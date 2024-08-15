@@ -10,7 +10,7 @@ I started working on this project as a degree project during the time I was stud
 
 2. Run "pnpm install" in projects root folder.
    
-3. Create a .env-file in the backend/ folder. And add these two lines:
+3. Create a .env-file in the backend/ folder and add these two lines:
 
          DB_URL = mongodb+srv://tempuser:TmDhNXzrCQBR31Nk@cluster0.txjsntp.mongodb.net/webshop-db?retryWrites=true&w=majority&appName=Cluster0
          PORT = 3000
