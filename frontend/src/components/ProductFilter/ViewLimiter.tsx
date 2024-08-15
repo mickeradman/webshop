@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../store/useAppDispatch';
-import { setPage, setViewLimit } from '../../store/Filter/filterSlice';
+import { setPage, setViewLimit } from '../../store/Filter/rova';
 
 const ViewLimiterWrapper = styled.div`
   display: grid;

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../store/useAppDispatch';
 import { RootState } from '../../store/store';
-import { setMinPrice, setMaxPrice } from '../../store/Filter/filterSlice';
+import { setMinPrice, setMaxPrice } from '../../store/Filter/rova';
 
 const SliderWrapper = styled.div`
   display: grid;

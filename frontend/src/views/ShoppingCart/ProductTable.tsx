@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { CartProps } from '../../store/Cart/cartSlice';
+import { CartProps } from '../../store/Cart/rova';
 import ProductItem from './ProductItem';
 
 const ProductListWrapper = styled.div`
