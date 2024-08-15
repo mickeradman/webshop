@@ -3,7 +3,7 @@ export const products = [
       productName: 'Burk med stenar',
       description: 'Väldigt vackra stenar från Österlens pittoreska vidder.',
       price: 192,
-      imgPath: '../../frontend/src/assets/IMG/burkmedstenar',
+      imgPath: 'src/assets/IMG/burkmedstenar',
       category: 'Vuxna',
       stockQty: 13
     },
@@ -11,7 +11,7 @@ export const products = [
       productName: 'Leksakshus',
       description: 'Något slags pappershus. Jättekul att leka med!',
       price: 10,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/papphus',
       category: 'Barn',
       stockQty: 233
     },
@@ -19,7 +19,7 @@ export const products = [
       productName: 'Leksaksbil',
       description: 'En vacker bil som alla barn gillar.',
       price: 210,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/bil',
       category: 'Barn',
       stockQty: 52
     },
@@ -27,7 +27,7 @@ export const products = [
       productName: 'Spidermankeps',
       description: 'En keps för barn. Eller vuxen med litet huvud.',
       price: 165,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/keps',
       category: 'Barn',
       stockQty: 14
     },
@@ -35,7 +35,7 @@ export const products = [
       productName: 'Mugg',
       description: 'Otroligt välgjord mugg.',
       price: 325,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/mugg',
       category: 'Vuxna',
       stockQty: 3
     },
@@ -43,7 +43,7 @@ export const products = [
       productName: 'Teckning',
       description: 'Rosa teckning.',
       price: 500,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/teckning1',
       category: '',
       stockQty: 1
     },
@@ -51,7 +51,7 @@ export const products = [
       productName: 'Teckning',
       description: 'Pappa.',
       price: 500,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/teckning2',
       category: '',
       stockQty: 1
     },
@@ -59,7 +59,7 @@ export const products = [
       productName: 'Snus - Kaliber Salmiak',
       description: 'Billigt men torrt sattyg. Har vi slut på alla andra produkter kan du köpa detta. Till och med Vårgårda är bättre.',
       price: 30,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/snus2',
       category: 'Vuxna',
       stockQty: 300
     },
@@ -67,7 +67,7 @@ export const products = [
       productName: 'Vattenkanna',
       description: 'Modell mindre. Här på butiken uppskattar vi att den kan hålla ca 2,5 deciliter vatten. Fin som prydnad i det rustika hemmet.',
       price: 270,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/vattenkanna',
       category: '',
       stockQty: 20
     },
@@ -75,7 +75,7 @@ export const products = [
       productName: 'Docka',
       description: 'Söt docka.',
       price: 130,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/docka',
       category: 'Barn',
       stockQty: 666
     },
@@ -83,7 +83,7 @@ export const products = [
       productName: 'Gitarr',
       description: 'Dess spröda ton är ej bisarr - men det finns glädje i min gitarr.',
       price: 3200,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/gitarr',
       category: 'Vuxna',
       stockQty: 10
     },
@@ -91,7 +91,7 @@ export const products = [
       productName: 'Neil Young - Fredsförklaring',
       description: 'Bok författad av den fantastiske artisten Neil Young.',
       price: 420,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/neilyoung',
       category: 'Vuxna',
       stockQty: 21
     },
@@ -99,7 +99,7 @@ export const products = [
       productName: 'Raspberry Pi',
       description: 'Endast kartong.',
       price: 15,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/rpi',
       category: 'Vuxna',
       stockQty: 70
     },
@@ -107,7 +107,7 @@ export const products = [
       productName: 'Snus - Vårgårda Bär',
       description: 'Inget märkvärdigt.',
       price: 46,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/snus1',
       category: 'Vuxna',
       stockQty: 500
     },
@@ -115,7 +115,7 @@ export const products = [
       productName: 'Tutti Frutti',
       description: 'Tidlöst godis som tuggats av generation efter generation.',
       price: 15,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/tutti',
       category: '',
       stockQty: 143
     },
@@ -123,7 +123,7 @@ export const products = [
       productName: 'Konstnärligt kodlås',
       description: 'Kodlås designat efter dito i datorspelet RUST.',
       price: 150,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/codelock',
       category: '',
       stockQty: 0
     },
@@ -131,7 +131,7 @@ export const products = [
       productName: 'Munspel - Lee Oskar',
       description: 'Äkta kvalitet.',
       price: 250,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/munspel',
       category: 'Vuxna',
       stockQty: 9
     },
@@ -139,7 +139,7 @@ export const products = [
       productName: 'Burk med pengar',
       description: 'Burk med pengar...',
       price: 200,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/pengaburk',
       category: 'Vuxna',
       stockQty: 1
     },
@@ -147,7 +147,7 @@ export const products = [
       productName: 'Såg',
       description: 'Verktyg för en äkta karl.',
       price: 260,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/sag',
       category: 'Vuxna',
       stockQty: 14
     },
@@ -155,7 +155,7 @@ export const products = [
       productName: 'Liten skål',
       description: 'Liten och nätt.',
       price: 25,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/skal',
       category: 'Vuxna',
       stockQty: 4
     },
@@ -163,7 +163,7 @@ export const products = [
       productName: 'Strumpor',
       description: 'Barnstrumpor av högsta kvalitet!',
       price: 25,
-      imgPath: '/assets/IMG/',
+      imgPath: 'src/assets/IMG/strumpor',
       category: 'Barn',
       stockQty: 77
     },
