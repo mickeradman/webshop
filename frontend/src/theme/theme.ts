@@ -3,7 +3,7 @@ import palette from './palette';
 
 const lightMode: Theme = {
   color: {
-    bodyBg: '#fffcf7',
+    bodyBg: '#f1fff7',
     appBg: '#fefefe',
     primary: palette.soilScale[500],
     secondary: palette.greeneryScale[500],
