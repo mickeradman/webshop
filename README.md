@@ -45,7 +45,7 @@ Note: Make sure you don't run any other services on ports 3000 and 5173.
 * Functionality that doesn't work in the admin panel at the moment:
   - Add new product to database.
   - Add new field to a product (though the button exist at least ;).
-  - Remove product from database.
+  - Remove product from database (same here as above).
   - Probably a lot more functionalities that I haven't figured out yet.
 
 <br>
