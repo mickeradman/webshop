@@ -5,7 +5,7 @@ import Button from '../../../components/Button/Button';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { setPage, setTotalPages } from '../../../store/Filter/rova';
+import { setPage, setTotalPages } from '../../../store/Filter/filterSlice';
 
 const PaginationWrapper = styled.div`
   display: flex;

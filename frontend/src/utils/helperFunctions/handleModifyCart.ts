@@ -3,7 +3,7 @@ import {
   increaseProductQty,
   decreaseProductQty,
   clearCart,
-} from '../../store/Cart/rova';
+} from '../../store/Cart/cartSlice';
 import { Product } from '../../types/types';
 
 type ModifyCartProps = {

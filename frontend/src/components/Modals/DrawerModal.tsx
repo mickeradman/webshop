@@ -7,7 +7,7 @@ import { ModalOverlay } from './SharedComponents';
 import Button from '../Button/Button';
 import { createHandleModifyCart } from '../../utils/helperFunctions/handleModifyCart';
 import { useAppDispatch } from '../../store/useAppDispatch';
-import { CartProps } from '../../store/Cart/rova';
+import { CartProps } from '../../store/Cart/cartSlice';
 
 const slideIn = keyframes`
   from {
