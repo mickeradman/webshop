@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../store/useAppDispatch';
-import { setPage, setViewLimit } from '../../store/Filter/FilterSlice';
+import { setPage, setViewLimit } from '../../store/Filter/filterSlice';
 
 const ViewLimiterWrapper = styled.div`
   display: grid;
@@ -21,13 +21,13 @@ const StyledSelect = styled.select`
   align-self: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  border: 1px solid ${({ theme }) => theme.color.primary};
+  border: 1px solid ${({ theme }) => theme.color.inputBorder};
   color: ${({ theme }) => theme.color.textPrimary};
   background-color: ${({ theme }) => theme.color.appBg};
 
   &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.color.primary};
+    outline: transparent;
+    background-color: ${({ theme }) => theme.color.inputBgFocus};
   }
 `;
 

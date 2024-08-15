@@ -12,6 +12,10 @@ export type Theme = {
     borderPrimary: string;
     buttonHover: string;
     buttonBg: string;
+    buttonBorder: string;
+    buttonBorderHover: string;
+    buttonDangerBg: string;
+    buttonDangerBorder: string;
     cartCountChip: string;
     cartSummaryBg: string;
     delimiterPrimary: string;
@@ -21,6 +25,9 @@ export type Theme = {
     headerFooterBg: string;
     hoverPrimary: string;
     hoverSecondary: string;
+    inputBgFocus: string;
+    inputBorder: string;
+    inputBorderError: string;
     modalBg: string;
     navbarBg: string;
     navLinkActive: string;
@@ -53,9 +60,3 @@ export type Product = {
   imgPath: string;
   category: string;
 };
-
-export enum ValidPaths {
-  Nyheter = '/nyheter',
-  Produkt = '/produkter',
-  Om = '/om-oss',
-}

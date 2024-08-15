@@ -17,14 +17,14 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 0.25rem;
-  border: 1px solid ${({ theme }) => theme.color.primary};
+  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.color.inputBorder};
   color: ${({ theme }) => theme.color.textPrimary};
   background-color: ${({ theme }) => theme.color.appBg};
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.color.primary};
+    background-color: ${({ theme }) => theme.color.inputBgFocus};
   }
 `;
 

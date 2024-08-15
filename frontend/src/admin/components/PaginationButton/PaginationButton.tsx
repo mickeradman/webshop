@@ -24,7 +24,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   transition: background 200ms;
 
   &:hover {
-    cursor: ${({ $disabled }) => ($disabled ? 'normal' : 'pointer')};
+    cursor: ${({ $disabled }) => ($disabled ? 'unset' : 'pointer')};
     background: ${({ theme, $disabled }) =>
       $disabled ? theme.color.disabledComponent : theme.color.buttonHover};
   }

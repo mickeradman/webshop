@@ -1,64 +1,66 @@
-import React, { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import React, { useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 
-import About from "./views/About/About";
-import { GlobalStyle } from "./styles/styles";
-import MainLayout from "./layouts/MainLayout";
-import News from "./views/News/News";
-import Products from "./views/Products/Products";
-import theme from "./theme/theme";
-import AdminDashboard from "./admin/views/AdminDashboard/AdminDashboard";
+import About from './views/About/About';
+import { GlobalStyle } from './styles/styles';
+import MainLayout from './layouts/MainLayout';
+import News from './views/News/News';
+import Products from './views/Products/Products';
+import theme from './theme/theme';
+import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 
 const App: React.FC = () => {
   const [isLightMode, setIsLightMode] = useState(
-    localStorage.getItem("theme") === "light" || null ? true : false
+    localStorage.getItem('theme') === 'light' || null ? true : false
   );
 
   function switchTheme() {
-    localStorage.setItem("theme", isLightMode ? "dark" : "light");
+    localStorage.setItem('theme', isLightMode ? 'dark' : 'light');
     setIsLightMode(!isLightMode);
   }
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: (
         <MainLayout isLightMode={isLightMode} switchTheme={switchTheme} />
       ),
       children: [
         {
           index: true,
-          path: "nyheter",
+          path: 'news',
           element: <News />,
         },
         {
-          path: "produkter",
+          path: 'products',
           element: <Products />,
         },
         {
-          path: "om-oss",
+          path: 'about',
           element: <About />,
         },
       ],
     },
     {
-      path: "admin",
+      path: 'admin',
       element: (
         <AdminDashboard isLightMode={isLightMode} switchTheme={switchTheme} />
       ),
     },
     {
-      path: "*",
+      path: '*',
       element: <div>404 Not Found</div>,
     },
   ]);
 
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme[isLightMode ? "light" : "dark"]}>
+      <ThemeProvider theme={theme[isLightMode ? 'light' : 'dark']}>
         <GlobalStyle />
         <RouterProvider router={router} />
+        <ToastContainer />
       </ThemeProvider>
     </React.StrictMode>
   );

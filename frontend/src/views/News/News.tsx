@@ -18,9 +18,6 @@ const StyledTextContainer = styled.section`
 `;
 
 const News = () => {
-  localStorage.setItem('lastVisitedPage', location.pathname);
-  localStorage.setItem('lastInteractionTime', Date.now().toString());
-
   return (
     <StyledTextContainer>
       <h2>Våra senaste nyheter!</h2>

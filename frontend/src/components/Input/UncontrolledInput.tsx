@@ -40,7 +40,10 @@ const UncontrolledInput = ({
   return (
     <InputWrapper>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput defaultValue={defaultValue} placeholder={placeholder} />
+      <StyledInput
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+      />
     </InputWrapper>
   );
 };

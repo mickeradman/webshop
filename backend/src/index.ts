@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import productRoutes from './routes/product.routes';
-import adminRoutes from './routes/admin.routes';
+import adminRoutes from './routes/adminRoutes';
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 const app = express();
@@ -14,9 +14,8 @@ const port = parseInt(process.env.PORT ?? '3000');
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:5173' }));
 
-app.use('/api/users/products', productRoutes);
-app.use('/api/admin/products', adminRoutes);
-app.use('/api/admin/products/count', adminRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 mongoose
   .connect(process.env.DB_URL ?? 'undefined')
@@ -31,7 +30,7 @@ app.use((_req: Request, res: Response) => {
 
 interface CustomError extends Error {
   status?: number;
-  body?: any;
+  body?: unknown;
 }
 
 app.use(

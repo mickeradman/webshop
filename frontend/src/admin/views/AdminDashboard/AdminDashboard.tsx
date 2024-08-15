@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../../../views/Header/Header';
-import ProductFilter from '../../../components/ProductFilter/ProductFilter';
+import { ProductFilter } from '../../../components/ProductFilter/ProductFilter';
 import { ProductList } from '../AdminDashboard/ProductList';
 import { ProductPagination } from './ProductPagination';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { useAppDispatch } from '../../../store/useAppDispatch';
-import { setPage, setViewLimit } from '../../../store/Filter/FilterSlice';
 
 const Wrapper = styled.div`
   display: grid;
@@ -34,10 +30,40 @@ const PageTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 1rem 0 0 0;
   padding: 1rem 0;
-  height: 2rem;
 `;
+
+const AddRemoveWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+// const AddNewProduct = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: fit-content;
+//   color: ${({ theme }) => theme.color.textPrimary};
+//   background-color: ${({ theme }) => theme.color.buttonBg};
+//   font-weight: bold;
+//   letter-spacing: 1px;
+//   padding: 0.5rem 1rem;
+//   border-radius: 5px;
+//   border: none;
+//   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+//   transition: box-shadow 200ms ease-in-out;
+//   cursor: pointer;
+
+//   &:hover {
+//     background-color: ${({ theme }) => theme.color.buttonBg};
+//     border: none;
+//     box-shadow: none;
+//     padding: calc(0.5rem + 2px) calc(1rem + 2px);
+//   }
+// `;
 
 type Props = {
   isLightMode: boolean;
@@ -45,13 +71,6 @@ type Props = {
 };
 
 const AdminDashboard = ({ isLightMode, switchTheme }: Props) => {
-  const dispatch = useAppDispatch();
-  const { page, totalPages } = useSelector((state: RootState) => state.filter);
-
-  const handlePageChange = (newPage: number) => {
-    dispatch(setPage(newPage));
-  };
-
   return (
     <Wrapper>
       <Header
@@ -63,11 +82,7 @@ const AdminDashboard = ({ isLightMode, switchTheme }: Props) => {
         <PageTitle>Admin Dashboard</PageTitle>
         <ProductFilter />
         <ProductList />
-        <ProductPagination
-          page={page}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
+        <ProductPagination />
       </DashboardWrapper>
     </Wrapper>
   );

@@ -6,7 +6,8 @@
     "scripts": {
         "dev:backend": "pnpm --filter backend dev",
         "dev:frontend": "pnpm --filter frontend dev",
-        "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\""
+        "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+        "seed": "pnpm --filter backend seed"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^7.17.0",
