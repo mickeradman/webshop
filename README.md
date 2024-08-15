@@ -8,7 +8,7 @@ This is an ongoing project and it's far from finished.
 
 ## Instructions for testing
 
-1. Clone the dev-branch.
+1. Clone the dev-branch (NOT the main-branch).
 
 2. Run "pnpm install" in projects root folder.
    
