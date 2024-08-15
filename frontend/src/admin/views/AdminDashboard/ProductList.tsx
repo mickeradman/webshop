@@ -269,7 +269,7 @@ export const ProductList = () => {
             </TitleAndRemoveProductWrapper>
             <FieldsContainer>
               {Object.keys(product).map((key) => {
-                if (key === '_id') return null;
+                if (key === '_id' || key === '__v') return null;
                 return (
                   <ControlledInput
                     key={key}
