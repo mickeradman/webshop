@@ -15,8 +15,6 @@ I started working on this project as a degree project during the time I was stud
          DB_URL = mongodb+srv://tempuser:TmDhNXzrCQBR31Nk@cluster0.txjsntp.mongodb.net/webshop-db?retryWrites=true&w=majority&appName=Cluster0
          PORT = 3000
 
-   Note: Be sure you don't run any other services on port 3000.
-
 4. Run the command "pnpm run seed" in projects root folder.
 
 5. Run the command "pnpm dev" in projects root folder.
@@ -24,6 +22,8 @@ I started working on this project as a degree project during the time I was stud
 6. Open your preferred web browser and go to http://localhost:5173/
 
 7. If you want to go to the admin-panel, which I'm currently working on, go to: http://localhost:5173/admin
+
+Note: Make sure you don't run any other services on ports 3000 and 5173.
 
 <br>
 
