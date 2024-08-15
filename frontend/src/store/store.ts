@@ -2,9 +2,9 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import cartReducer from './Cart/cartSlice';
-import productReducer from './Product/productSlice';
-import filterReducer from './Filter/filterSlice';
+import cartReducer from './Cart/CartSlice';
+import productReducer from './Product/ProductSlice';
+import filterReducer from './Filter/FilterSlice';
 import { productApi } from '../api/productApi';
 
 const rootPersistConfig = {
