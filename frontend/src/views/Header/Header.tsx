@@ -127,7 +127,7 @@ const Header = ({
             onClick={() => navigate('/news')}
             className='noVisibleMarkerOnClick'
           >
-            LEDORADO
+            LE BOTIQUE
           </HeaderTitle>
         </HeaderTitleContainer>
         <OptionsContainer>

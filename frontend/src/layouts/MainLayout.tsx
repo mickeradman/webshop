@@ -8,7 +8,7 @@ export const AligningWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1440px;
-  min-width: 60%;
+  width: 60%;
   padding: 0 1.5rem 1.5rem 1.5rem;
   background-color: ${({ theme }) => theme.color.appBg};
 `;

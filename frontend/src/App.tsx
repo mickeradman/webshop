@@ -12,9 +12,10 @@ import theme from './theme/theme';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 
 const App: React.FC = () => {
-  const [isLightMode, setIsLightMode] = useState(
-    localStorage.getItem('theme') === 'light' || null ? true : false
-  );
+  const [isLightMode, setIsLightMode] = useState(() => {
+    const storedTheme = localStorage.getItem('theme');
+    return storedTheme ? storedTheme === 'light' : true;
+  });
 
   function switchTheme() {
     localStorage.setItem('theme', isLightMode ? 'dark' : 'light');
