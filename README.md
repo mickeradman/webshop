@@ -1,4 +1,4 @@
-# This is my webshop.
+# This is my webshop
 
 I started working on this project as a degree project during the time I was studying to become a JavaScript developer. After my studies were finished I decided to continue working on it.
 
