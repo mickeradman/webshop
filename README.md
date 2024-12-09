@@ -31,6 +31,8 @@ Note: Make sure you don't run any other services on ports 3000 and 5173.
 * One day, I realized that I needed an admin panel/dashboard, and since then, I've been focusing almost 100% on getting that page and its functionality done.
   I want to be able to perform CRUD operations directly from the page instead of being forced to log in to MongoDB to do all that stuff.
 
+* Colors are not very uniform right now, since I've mostly focused on other stuff.
+
 * Right now there's no login to the page as it's under development. The same goes for the admin panel.
 
 * As I said I've been focusing on the admin panel lately, so I haven't yet implemented pagination and filtering on the "regular page". Which means
